@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCompanyAction } from "../redux/actions";
 
 const CompanySearchResults = () => {
-  const jobs = useSelector((state) => state.company.content.data);
+  const jobs = useSelector((state) => state.company.content);
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -18,23 +18,20 @@ const CompanySearchResults = () => {
   return (
     <Container>
       <Row>
-        {jobs && (
-          <Col className="my-3">
-            <h1 className="display-4">
-              Job posting for: {params.company}{" "}
-              <span className="display-6">
-                <Link to="/">Home</Link>
-              </span>{" "}
-              <span className="display-6">
-                <Link to="/favorites">View Favorites</Link>
-              </span>
-            </h1>
-
-            {jobs.map((jobData) => (
-              <Job key={jobData._id} data={jobData} />
-            ))}
-          </Col>
-        )}
+        <Col className="my-3">
+          <h1 className="display-4">
+            Job posting for: {params.company}{" "}
+            <span className="display-6">
+              <Link to="/">Home</Link>
+            </span>{" "}
+            <span className="display-6">
+              <Link to="/favorites">View Favorites</Link>
+            </span>
+          </h1>
+          {jobs.map((jobData) => (
+            <Job key={jobData._id} data={jobData} />
+          ))}
+        </Col>
       </Row>
     </Container>
   );

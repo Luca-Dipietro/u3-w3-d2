@@ -7,7 +7,7 @@ import { getCompanyAction } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
-  const jobs = useSelector((state) => state.company.content.data);
+  const jobs = useSelector((state) => state.company.content);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {

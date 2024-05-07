@@ -1,8 +1,8 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { FaTrash } from "react-icons/fa";
+import { Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeFromFavoritesAction } from "../redux/actions";
+import { GoStarFill } from "react-icons/go";
 
 const Favorites = () => {
   const favorites = useSelector((state) => state.favorites.content);
@@ -25,9 +25,11 @@ const Favorites = () => {
               style={{ border: "1px solid #00000033", borderRadius: 4 }}
             >
               <Col xs={1}>
-                <Button type="button" variant="danger" onClick={() => dispatch(removeFromFavoritesAction(index))}>
-                  <FaTrash />
-                </Button>
+                <GoStarFill
+                  onClick={() => {
+                    dispatch(removeFromFavoritesAction(company));
+                  }}
+                />
               </Col>
               <Col xs={3}>
                 <Link to={`/${company.company_name}`}>{company.company_name}</Link>
