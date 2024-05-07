@@ -7,7 +7,7 @@ import { getCompanyAction } from "../redux/actions";
 
 const MainSearch = () => {
   const [query, setQuery] = useState("");
-  const jobs = useSelector((state) => state.company.content);
+  const jobs = useSelector((state) => state.company.content.data);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -35,11 +35,13 @@ const MainSearch = () => {
             <Form.Control type="search" value={query} onChange={handleChange} placeholder="type and press Enter" />
           </Form>
         </Col>
-        <Col xs={10} className="mx-auto mb-5">
-          {jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
-          ))}
-        </Col>
+        {jobs && (
+          <Col xs={10} className="mx-auto mb-5">
+            {jobs.map((jobData) => (
+              <Job key={jobData._id} data={jobData} />
+            ))}
+          </Col>
+        )}
       </Row>
     </Container>
   );
